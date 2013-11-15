@@ -1,0 +1,22 @@
+{
+    "name": "alex/phasher",
+    "description": "Phaser Client",
+    "keywords": ["search","client"],
+    "homepage": "http://elastica.io/",
+    "type": "library",
+    "license": "Apache 2.0",
+    "authors": [
+        {
+            "name": "Alex",
+            "homepage": "https://github.com/alexrunrun/phasher"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phaser": "lib/"
+        }
+    }
+}
