@@ -1,4 +1,10 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/alexrunrun/phasher"
+        }
+    ],
     "name": "alex/phasher",
     "description": "Phasher",
     "keywords": ["phasher"],
@@ -16,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Phaser": "lib/"
+            "Phasher": "lib/"
         }
     }
 }
