@@ -1,8 +1,8 @@
 {
     "name": "alex/phasher",
-    "description": "Phaser Client",
-    "keywords": ["search","client"],
-    "homepage": "http://elastica.io/",
+    "description": "Phasher",
+    "keywords": ["phasher"],
+    "homepage": "https://github.com/alexrunrun/phasher",
     "type": "library",
     "license": "Apache 2.0",
     "authors": [
