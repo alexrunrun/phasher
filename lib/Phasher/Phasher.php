@@ -1,8 +1,5 @@
-<?PHP
-/* 
-	PHasher is a naive perceptual hashing class for PHP. 
-	
-*/
+<?php
+
 
 namespace Phasher;
 
