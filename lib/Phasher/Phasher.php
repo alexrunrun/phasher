@@ -20,11 +20,11 @@ private static $Instance;
 	
 	/* multi-pass comparison, returns the highest match after comparing rotations. */
 	
-	public function Detect($res1, $res2, $precision = 1){
-		$hash1 = $this->HashImage($res1);
+	public function detect($res1, $res2, $precision = 1){
+		$hash1 = $this->hashImage($res1);
 		$result = 0;
 		for($rot=0; $rot<=270; $rot+=90){
-			$new_result = $this->Compare($res1, $res2, $rot, $precision);
+			$new_result = $this->compare($res1, $res2, $rot, $precision);
 			if($new_result > $result){
 				$result = $new_result;
 			}
@@ -36,7 +36,7 @@ private static $Instance;
 	// compare hash strings (no rotation)
 	// this assumes the strings will be the same length, which they will be
 	// as hashes. 
-	public function CompareStrings($hash1, $hash2, $precision = 1){
+	public function compareStrings($hash1, $hash2, $precision = 1){
 		
 		$similarity = strlen($hash1);
 		
@@ -52,10 +52,10 @@ private static $Instance;
 	}
 	
 	/* hash two images and return an index of their similarty as a percentage. */
-	public function Compare($res1, $res2, $rot=0, $precision = 1){
+	public function compare($res1, $res2, $rot=0, $precision = 1){
 		
-		$hash1 = $this->HashImage($res1); // this one should never be rotated
-		$hash2 = $this->HashImage($res2, $rot);
+		$hash1 = $this->hashImage($res1); // this one should never be rotated
+		$hash2 = $this->hashImage($res2, $rot);
 		
 		$similarity = count($hash1);
 		
@@ -69,7 +69,7 @@ private static $Instance;
 		return $percentage;
 	}
 	
-	public function ArrayAverage($arr){
+	public function arrayAverage($arr){
 		return floor(array_sum($arr) / count($arr));
 	}
 	
@@ -77,9 +77,9 @@ private static $Instance;
 		also we're storing the hash as an array of bits instead of a string. 
 		http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html */
 		
-	public function HashImage($res, $rot=0, $mir=0, $size = 8){
+	public function hashImage($res, $rot=0, $mir=0, $size = 8){
 		
-		$res = $this->NormalizeAsResource($res); // make sure this is a resource
+		$res = $this->normalizeAsResource($res); // make sure this is a resource
 		$rescached = imagecreatetruecolor($size, $size);
 		
 		imagecopyresampled($rescached, $res, 0, 0, 0, 0, $size, $size, imagesx($res), imagesy($res));
@@ -128,7 +128,7 @@ private static $Instance;
 		}		
 		
 		// find the average value in the array
-		$avg = $this->ArrayAverage($pixels);
+		$avg = $this->arrayAverage($pixels);
 		
 		// create a hash (1 for pixels above the mean, 0 for average or below)
 		$index = 0;
@@ -152,9 +152,9 @@ private static $Instance;
 	re-reading pixel data, and return a perceptual hash for that image. Doesn't support rotation yet and is not actually as fast as it could be
 	due to the multiple looping. */
 
-	function  FastHashImage($res, $scale=8)  {
+	function  fasthashImage($res, $scale=8)  {
 
-		$res = $this->NormalizeAsResource($res);
+		$res = $this->normalizeAsResource($res);
 	
 		$hash = array();
 		$src_w = imagesx($res);
@@ -227,7 +227,7 @@ private static $Instance;
 	/* if $resource is a filename pointing to an image, make it an image resource. Otherwise
 		return the resource. */
 		
-	private function NormalizeAsResource($resource){
+	private function normalizeAsResource($resource){
 		if(gettype($resource) == 'resource'){
 			return $resource;
 		}
@@ -239,7 +239,7 @@ private static $Instance;
 	}
 
 	/* return a perceptual hash as a string. Hex or binary. */
-	public function HashAsString($hash, $hex=true){
+	public function hashAsString($hash, $hex=true){
 		$i = 0;
 		$bucket=null;
 		$return = null;
@@ -259,7 +259,7 @@ private static $Instance;
 	}
 	
 	/* returns a binary hash as an html table, with each cell representing 1 or 0. */
-	public function HashAsTable($hash, $size=8, $cellsize=8){
+	public function hashAsTable($hash, $size=8, $cellsize=8){
 		
 		$index = 0;
 		$table = "<table cellpadding=\"0\" cellspacing=\"0\" style=\"table-layout: fixed;display:inline-block;\"><tr><td><tbody>";
