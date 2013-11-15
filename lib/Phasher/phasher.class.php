@@ -3,7 +3,10 @@
 	PHasher is a naive perceptual hashing class for PHP. 
 	
 */
-class PHasher{
+
+namespace Phasher;
+
+class Phasher{
 
 private static $Instance;
 
