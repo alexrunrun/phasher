@@ -5,16 +5,16 @@ namespace Phasher;
 
 class Phasher{
 
-private static $Instance;
+private static $instance;
 
 	private function __construct(){
 	}
 	
-	public static function Instance(){
-		 if (is_null(self::$Instance)){
-			self::$Instance = new self();
+	public static function instance(){
+		 if (is_null(self::$instance)){
+			self::$instance = new self();
 		}
-		return self::$Instance;
+		return self::$instance;
 	}
 	
 	
